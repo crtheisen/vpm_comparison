@@ -1,0 +1,15 @@
+
+***Settings***
+Target: everything.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: gnb
+
+Average Confusion Matrix:
+      0   1
+0  1124  84
+1    44  25
+
+Scores (Precision, Recall, FScore):
+(0.22740498272413165, 0.36162521688837479, 0.2792229541141007, None)
+

@@ -1,0 +1,19 @@
+
+
+
+
+
+***Settings***
+Target: scandariato.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: rf
+
+Average Confusion Matrix:
+      0  1
+0  8546  1
+1    79  1
+
+Scores (Precision, Recall, FScore):
+(0.47107438016528924, 0.021145047607270928, 0.040473372781065088, None)
+

@@ -1,0 +1,16 @@
+[['Crashes', 0.1190446510003083], ['CountOutput', 0.11543352175920335], ['CountClassBase', 0.099278403800767079], ['CountDeclMethod', 0.096945484190304007], ['ChurnTotal', 0.096485302217470259], ['CountClassDerived', 0.089967319396713971], ['Cyclomatic', 0.087807483160283015], ['Churn', 0.084308254559990192], ['Unique', 0.05713741976064763], ['MaxInheritanceTree', 0.04574818044522419], ['CountLine', 0.033783884913318463], ['CountInput', 0.027345839065443481], ['CountClassCoupled', 0.021168816482521072], ['MaxNesting', 0.020430336219843408], ['CountDeclInstanceVariablePrivate', 0.005115103027961438]]
+
+***Settings***
+Target: softwaremetrics_crashes.csv
+Crossfolds: 1
+Training Set Size: .7
+Classifier: rf
+
+Average Confusion Matrix:
+      0  1
+0  1184  2
+1    58  5
+
+Scores (Precision, Recall, FScore):
+(0.7142857142857143, 0.079365079365079361, 0.14285714285714282, None)
+

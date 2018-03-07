@@ -1,0 +1,15 @@
+Running Shin
+Current time : 15:26:19
+Running Zimmermann
+Current time : 15:28:08
+Running scandariato
+Current time : 15:30:05
+Running everything
+Current time : 15:46:46
+Running scandariato_crashes
+Current time : 15:50:14
+Running textmining_softwaremetrics
+Current time : 15:53:43
+Running softwaremetrics_crashes
+Current time : 16:11:16
+Current time : 16:12:25
