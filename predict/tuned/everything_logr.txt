@@ -1,0 +1,15 @@
+
+***Settings***
+Target: everything.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: logr
+
+Average Confusion Matrix:
+      0   1
+0  1169  39
+1    59   9
+
+Scores (Precision, Recall, FScore):
+(0.20243654822335025, 0.14415847310584154, 0.16839793936322947, None)
+

@@ -3,13 +3,13 @@
 Target: scandariato.csv
 Crossfolds: 100
 Training Set Size: .7
-Classifier: gnb
+Classifier: cnb
 
 Average Confusion Matrix:
       0     1
-0  3499  5049
-1    21    59
+0  6415  2133
+1    11    69
 
 Scores (Precision, Recall, FScore):
-(0.01168848961697297, 0.7384691480153333, 0.02301273368695052, None)
+(0.031562555332083304, 0.8596512921973538, 0.06088951950531646, None)
 

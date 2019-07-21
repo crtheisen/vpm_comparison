@@ -1,0 +1,15 @@
+
+***Settings***
+Target: everything.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: dtc
+
+Average Confusion Matrix:
+      0   1
+0  1163  45
+1    53  15
+
+Scores (Precision, Recall, FScore):
+(0.250287781614866, 0.2200694042799306, 0.2342078941294145, None)
+

@@ -1,0 +1,15 @@
+
+***Settings***
+Target: textmining_softwaremetrics.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: logr
+
+Average Confusion Matrix:
+      0   1
+0  8484  64
+1    69  11
+
+Scores (Precision, Recall, FScore):
+(0.1485578822599763, 0.13948312105848892, 0.14387755102040817, None)
+

@@ -1,0 +1,15 @@
+
+***Settings***
+Target: softwaremetrics_crashes.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: dtc
+
+Average Confusion Matrix:
+      0   1
+0  1170  38
+1    58  10
+
+Scores (Precision, Recall, FScore):
+(0.21483272873841194, 0.15413533834586465, 0.1794914968849975, None)
+

@@ -1,7 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import precision_recall_fscore_support
+from sklearn.metrics import precision_recall_fscore_support, roc_auc_score
 from sklearn import linear_model
 from scipy.stats.stats import pearsonr
 import pandas as pd
@@ -41,7 +41,6 @@ parser.add_argument(
     )
 args = parser.parse_args()
 
-#file = 'shin.csv'
 file = args.file
 
 output_file = args.output
@@ -65,17 +64,18 @@ precision_list = []
 recall_list = []
 fscore_list = []
 
+avg_aoc = 0.0
+
 d = {'0': [long(0), 0], '1': [0, 0]}
 average_conf_matrix = pd.DataFrame(data=d)
 
-#print 'Running ' + file + ' at ' + str(len(seeds)) + ' cross fold validation.'
-
 for seed in seeds:
+	print '1'
 	# Set random seed and set classifier
 	np.random.seed(seed)
 	#print 'Seed Run: ' + str(seed)
 	if args.classifier == 'rf':
-		clf = RandomForestClassifier(n_estimators=100, n_jobs=2, random_state=seed)
+		clf = RandomForestClassifier(n_estimators=50, max_features=.78,n_jobs=2, random_state=seed)
 	elif args.classifier == 'gnb':
 		clf = GaussianNB()
 	elif args.classifier == 'dtc':
@@ -98,20 +98,7 @@ for seed in seeds:
 	#set dependent variable
 	dep = 'Security'
 
-	#get pearson for all features, list top 20
-	ret = []
-	for column in features:
-		ret.append([column, pearsonr(df[column].values.tolist(), df[dep].values.tolist())[0]])
-
-	#print sorted(ret, key=lambda x:x[1], reverse=True)[:20]
-
 	y = train['Security']
-	#y = pd.factorize(train['Security'])[0]
-
-	#clf = RandomForestClassifier(n_estimators=100, n_jobs=2, random_state=seed)
-	#clf = GaussianNB()
-	#clf = DecisionTreeClassifier()
-	#clf = linear_model.LogisticRegression()
 
 	clf.fit(train[features], y)
 	clf.predict(test[features])
@@ -121,19 +108,6 @@ for seed in seeds:
 	#concatinate the runs together
 	total_test += test['Security'].values.tolist()
 	total_preds += preds.tolist()
-
-	#feature importance (1 per run)
-	# print sorted(clf.feature_importances_, reverse=True)[:20]
-	# print sum(clf.feature_importances_)
-	# try:
-	# 	total_features
-	# 	j = 0
-	# 	for i in clf.feature_importances_:
-	# 		total_features[j] += i
-	# 		j += 1
-	# except NameError:
-	# 	total_features = np.copy(clf.feature_importances_)
-
 
 	precision, recall, fscore, temp = precision_recall_fscore_support(test['Security'].values.tolist(), preds.tolist(), average='binary')
 	precision_list.append(precision)
@@ -152,6 +126,8 @@ for seed in seeds:
 		average_conf_matrix['1'][1] += matrix[1][1]
 	except:
 		print ''
+
+	avg_aoc = avg_aoc + roc_auc_score(test['Security'], preds)
 
 #End for seed in seeds
 
@@ -177,18 +153,22 @@ print ''
 print 'Scores (Precision, Recall, FScore):'
 print precision_recall_fscore_support(total_test, total_preds, average='binary')
 print ''
+print 'Avg AUC:'
+print avg_aoc/int(args.seeds)
 
-with open('boxplot_data/precision/' + output_file + '_precision.csv', 'wb') as csv_file:
-	writer = csv.writer(csv_file)
-	for value in precision_list:
-		writer.writerow([value])
 
-with open('boxplot_data/recall/' + output_file + '_recall.csv', 'wb') as csv_file:
-	writer = csv.writer(csv_file)
-	for value in recall_list:
-		writer.writerow([value])
 
-with open('boxplot_data/fscore/' + output_file + '_fscore.csv', 'wb') as csv_file:
-	writer = csv.writer(csv_file)
-	for value in fscore_list:
-		writer.writerow([value])
+# with open('boxplot_data/precision/' + output_file + '_precision.csv', 'wb') as csv_file:
+# 	writer = csv.writer(csv_file)
+# 	for value in precision_list:
+# 		writer.writerow([value])
+#
+# with open('boxplot_data/recall/' + output_file + '_recall.csv', 'wb') as csv_file:
+# 	writer = csv.writer(csv_file)
+# 	for value in recall_list:
+# 		writer.writerow([value])
+#
+# with open('boxplot_data/fscore/' + output_file + '_fscore.csv', 'wb') as csv_file:
+# 	writer = csv.writer(csv_file)
+# 	for value in fscore_list:
+# 		writer.writerow([value])

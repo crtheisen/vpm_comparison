@@ -1,0 +1,15 @@
+
+***Settings***
+Target: shin.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: rf
+
+Average Confusion Matrix:
+      0  1
+0  8543  4
+1    76  4
+
+Scores (Precision, Recall, FScore):
+(0.45302013422818793, 0.050080375911957464, 0.0901904019596927, None)
+

@@ -1,5 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import GaussianNB, ComplementNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn import linear_model
@@ -31,7 +31,7 @@ parser.add_argument(
     )
 parser.add_argument(
         '-c', dest='classifier', default='rf',
-        choices=['rf', 'gnb', 'dtc', 'logr'],
+        choices=['rf', 'gnb', 'dtc', 'logr', 'cnb'],
         help='The type of classifier to be used for this run.'
     )
 parser.add_argument(
@@ -75,13 +75,19 @@ for seed in seeds:
 	np.random.seed(seed)
 	#print 'Seed Run: ' + str(seed)
 	if args.classifier == 'rf':
-		clf = RandomForestClassifier(n_estimators=100, n_jobs=2, random_state=seed)
+		clf = RandomForestClassifier(n_estimators=71, max_features=0.87743191,
+		 max_leaf_nodes=49, min_samples_split=3, min_samples_leaf=1, n_jobs=2, random_state=seed)
 	elif args.classifier == 'gnb':
 		clf = GaussianNB()
+	elif args.classifier == 'cnb':
+		clf = ComplementNB(alpha=0.6668177)
 	elif args.classifier == 'dtc':
-		clf = DecisionTreeClassifier()
+		clf = DecisionTreeClassifier(min_samples_split=13,
+									 min_samples_leaf=1,
+									 max_features=0.29399273,
+									 max_depth=29)
 	elif args.classifier == 'logr':
-		clf = linear_model.LogisticRegression()
+		clf = linear_model.LogisticRegression(C=736.82818869)
 	else:
 		print 'Classifier invalid. Please enter a valid classifier.'
 		exit()

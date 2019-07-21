@@ -1,0 +1,15 @@
+
+***Settings***
+Target: softwaremetrics_crashes.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: gnb
+
+Average Confusion Matrix:
+      0    1
+0  1101  107
+1    46   22
+
+Scores (Precision, Recall, FScore):
+(0.17543725654930115, 0.3321283979178716, 0.229596681493328, None)
+

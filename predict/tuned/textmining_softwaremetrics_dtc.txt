@@ -1,0 +1,15 @@
+
+***Settings***
+Target: textmining_softwaremetrics.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: dtc
+
+Average Confusion Matrix:
+      0   1
+0  8496  52
+1    65  15
+
+Scores (Precision, Recall, FScore):
+(0.22789667896678967, 0.190923704711265, 0.2077782263490782, None)
+

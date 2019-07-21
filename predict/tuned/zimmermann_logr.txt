@@ -1,0 +1,15 @@
+
+***Settings***
+Target: zimmermann.csv
+Crossfolds: 100
+Training Set Size: .7
+Classifier: logr
+
+Average Confusion Matrix:
+      0   1
+0  8529  19
+1    77   3
+
+Scores (Precision, Recall, FScore):
+(0.1414458913336327, 0.038951403487078026, 0.06108202443280978, None)
+
